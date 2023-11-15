@@ -1,0 +1,9 @@
+.error-label {
+    max-width: 268px;
+    width: 100%;
+    background-color: red;
+    padding: 3px;
+    border-radius: 3px;
+    color: white;
+    margin: 0 0 1rem 0;
+}
