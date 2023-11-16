@@ -2,12 +2,13 @@
 
 React + TypeScript + Vite + Docker + Nginx
 
-## Getting Started
-
-First time
-
+## First time
 ```bash
 npm i
+```
+
+## Run a development server
+```bash
 npm run dev
 ```
 
