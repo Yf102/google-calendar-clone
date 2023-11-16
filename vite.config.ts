@@ -10,5 +10,4 @@ export default defineConfig({
     assetsDir: "assets",
     emptyOutDir: true,
   },
-  base: "/google-calendar-clone/",
 });
