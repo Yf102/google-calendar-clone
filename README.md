@@ -1,6 +1,6 @@
 # Google Calendar Clone
 
-React + TypeScript + Vite
+React + TypeScript + Vite + Docker + Nginx
 
 ## Getting Started
 
