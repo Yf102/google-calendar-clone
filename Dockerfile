@@ -19,4 +19,8 @@ RUN rm /etc/nginx/conf.d/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE $EXPOSE_PORT
+
+# set hostname to localhost
+ENV HOSTNAME "0.0.0.0"
+
 CMD ["nginx", "-g", "daemon off;"]
