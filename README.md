@@ -21,11 +21,12 @@ npm run preview
 
 ## Docker
 
-Only first time
+Build Docker image
 ```bash
-docker-compose up --build --no-recreate -d
+docker-compose up --build -d
 ```
-From the second time onwards
+
+From the second time onwards run Docker image
 ```bash
 docker-compose up -d
 ```
