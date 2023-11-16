@@ -27,6 +27,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ '20.2.0' ]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
