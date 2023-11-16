@@ -17,6 +17,9 @@
 
 body {
   margin: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 #root {
@@ -138,6 +141,12 @@ body {
   background-color: var(--border-color);
   gap: var(--border-size);
   padding: var(--border-size);
+}
+
+@media (max-width: 900px)  {
+  .days {
+    grid-template-columns: none;
+  }
 }
 
 .day {

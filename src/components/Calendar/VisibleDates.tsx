@@ -10,7 +10,14 @@ import {
   startOfWeek,
 } from "date-fns";
 import cn from "classnames";
-import { Key, ReactNode, useLayoutEffect, useRef, useState } from "react";
+import {
+  Key,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { getDateKey } from "src/utils/helper.ts";
 import EventsForDay from "src/components/Calendar/modals/EventsForDay";
 import { useEventsData } from "src/context/EventProvider.tsx";
@@ -23,6 +30,13 @@ type VisibleDatesProps = {
 };
 
 const VisibleDates = ({ visibleMonth, startWeekSunday }: VisibleDatesProps) => {
+  const daysRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (visibleMonth) {
+      daysRef.current?.scrollTo(0, 0);
+    }
+  }, [visibleMonth]);
+
   const weekStart: { locale?: Locale; weekStartsOn?: 0 | 1 } = {
     weekStartsOn: startWeekSunday ? 0 : 1,
   };
@@ -33,7 +47,7 @@ const VisibleDates = ({ visibleMonth, startWeekSunday }: VisibleDatesProps) => {
   });
 
   return (
-    <div className="days">
+    <div className="days" ref={daysRef}>
       {visibleDates.map((date, index) => {
         return (
           <CalendarDay
