@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  google_calendar_clone_docker:
+    image: google_calendar_clone_docker
+    container_name: google_calendar_clone_docker
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        ENVIRONMENT_BUILD: production
+        NODE_VERSION: 20.2.0
+        EXPOSE_PORT: 8080
+    ports:
+      - 8080:8080
+    tty: true
