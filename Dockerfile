@@ -18,7 +18,7 @@ COPY --from=builder /app/build /usr/share/nginx/html
 RUN mkdir /etc/nginx/certs
 RUN chown -R root:root /etc/nginx/certs
 RUN chmod -R 600 /etc/nginx/certs
-COPY --from=builder /app/certs/* /etc/nginx/certs/
+COPY ./certs/* /etc/nginx/certs/
 
 RUN rm /etc/nginx/conf.d/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
