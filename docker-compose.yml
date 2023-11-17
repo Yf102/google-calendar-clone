@@ -3,6 +3,8 @@ services:
   google_calendar_clone_docker:
     image: google_calendar_clone_docker
     container_name: google_calendar_clone_docker
+    networks:
+      - docker_network
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -14,3 +16,7 @@ services:
       - 8080:8080
     tty: true
     restart: on-failure
+
+networks:
+  docker_network:
+    external: true

@@ -20,6 +20,10 @@ npm run preview
 ```
 
 ## Docker
+Only First time run
+```bash
+docker network create docker_network
+```
 
 Build Docker image
 ```bash
