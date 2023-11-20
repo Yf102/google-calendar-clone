@@ -4,7 +4,8 @@ services:
     image: google_calendar_clone_docker
     container_name: google_calendar_clone_docker
     networks:
-      - docker_network
+      docker_network:
+        ipv4_address: 10.5.0.6
     build:
       context: .
       dockerfile: ./Dockerfile

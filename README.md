@@ -22,7 +22,7 @@ npm run preview
 ## Docker
 Only First time run
 ```bash
-docker network create docker_network
+docker network create --subnet=10.5.0.0/16 docker_network
 ```
 
 Build Docker image
