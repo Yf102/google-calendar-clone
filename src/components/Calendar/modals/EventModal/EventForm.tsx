@@ -6,6 +6,7 @@ import ColorPicker from "src/components/ColorPicker";
 import { EventFormType } from "src/components/Calendar/index.tsx";
 import { useEffect, useId } from "react";
 import { useEventsData } from "src/context/EventProvider.tsx";
+import style from "src/components/Calendar/modals/EventModal/styles.module.css";
 
 const EventForm = ({
   date,
@@ -76,6 +77,7 @@ const EventForm = ({
           <div className="form-group">
             <label htmlFor={"startTime" + id}>Start Time</label>
             <input
+              className={style["input-element"]}
               type="time"
               id={"startTime" + id}
               {...register("startTime")}
@@ -85,6 +87,7 @@ const EventForm = ({
           <div className="form-group">
             <label htmlFor={"endTime" + id}>End Time</label>
             <input
+              className={style["input-element"]}
               type="time"
               id={"endTime" + id}
               {...register("endTime")}
