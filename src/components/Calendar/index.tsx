@@ -7,10 +7,10 @@ export type EventFormType = {
   eventName: string;
   color: "blue" | "red" | "green";
   date: Date;
-  allDay: boolean;
-  startTime?: string;
-  endTime?: string;
-};
+} & (
+  | { allDay: false; startTime: string; endTime: string }
+  | { allDay: true; startTime?: never; endTime?: never }
+);
 
 const Calendar = () => {
   const [visibleMonth, setVisibleMonth] = useState(new Date());

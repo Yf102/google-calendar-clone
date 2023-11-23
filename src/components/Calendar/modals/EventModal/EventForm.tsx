@@ -4,7 +4,7 @@ import { EventSchema } from "src/components/Calendar/modals/EventModal/EventSche
 import ErrorLabel from "src/components/ErrorLabel";
 import ColorPicker from "src/components/ColorPicker";
 import { EventFormType } from "src/components/Calendar/index.tsx";
-import { useEffect, useId } from "react";
+import { useId } from "react";
 import { useEventsData } from "src/context/EventProvider.tsx";
 import style from "src/components/Calendar/modals/EventModal/styles.module.css";
 
@@ -24,7 +24,12 @@ const EventForm = ({
   const methods = useForm({
     resolver: yupResolver(EventSchema()),
     defaultValues: {
-      color: "blue",
+      id: event?.id || crypto.randomUUID(),
+      eventName: event?.eventName,
+      color: event?.color || "blue",
+      allDay: !!event?.allDay,
+      startTime: event?.startTime,
+      endTime: event?.endTime,
       date,
     },
   });
@@ -32,22 +37,9 @@ const EventForm = ({
   const {
     register,
     handleSubmit,
-    setValue,
     watch,
     formState: { errors },
   } = methods;
-
-  useEffect(() => {
-    if (event) {
-      setValue("id", event.id);
-      setValue("eventName", event.eventName);
-      setValue("allDay", event.allDay);
-      setValue("startTime", event.startTime);
-      setValue("endTime", event.endTime);
-      setValue("color", event.color);
-      setValue("date", event.date);
-    }
-  }, [event, setValue]);
 
   const onSubmit: SubmitHandler<EventFormType> = (data) => {
     isEdit ? updateEvent(data) : addEvents(data);
@@ -60,7 +52,11 @@ const EventForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data as EventFormType);
+      })}
+    >
       <div className="form-group">
         <label htmlFor={"eventName-" + id}>Name</label>
         <input type="text" id={"eventName-" + id} {...register("eventName")} />
