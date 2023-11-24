@@ -1,4 +1,5 @@
 import { addMonths, format } from "date-fns";
+import styles from "./Calendar.module.css";
 
 type HeaderProps = {
   onChange: (date: Date) => void;
@@ -13,21 +14,32 @@ const Header = ({ visibleMonth, onChange }: HeaderProps) => {
       <button className="btn" onClick={() => onChange(new Date())}>
         Today
       </button>
-      <div>
-        <button
-          className="month-change-btn"
-          onClick={() => handleMonthChange(-1)}
+      <div className={styles["header-wrapper"]}>
+        <div className={styles["navigation-wrapper"]}>
+          <button
+            className="month-change-btn"
+            onClick={() => handleMonthChange(-1)}
+          >
+            &lt;
+          </button>
+          <button
+            className="month-change-btn"
+            onClick={() => handleMonthChange(1)}
+          >
+            &gt;
+          </button>
+
+          <span className="month-title">
+            {format(visibleMonth, "MMMM - yyyy")}
+          </span>
+        </div>
+        <a
+          href="https://github.com/Yf102/google-calendar-clone"
+          target="_blank"
         >
-          &lt;
-        </button>
-        <button
-          className="month-change-btn"
-          onClick={() => handleMonthChange(1)}
-        >
-          &gt;
-        </button>
+          <img src="/github.svg" width={24} height={24} />
+        </a>
       </div>
-      <span className="month-title">{format(visibleMonth, "MMMM - yyyy")}</span>
     </div>
   );
 };
