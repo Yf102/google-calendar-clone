@@ -1,5 +1,5 @@
 import { EventFormType } from "src/components/Calendar";
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode } from "react";
 import { useLocalStorage } from "src/hooks/useLocalStorage.ts";
 import { getDateKey } from "src/utils/helper.ts";
 
@@ -12,7 +12,7 @@ type EventsContextType = {
   updateEvent: (event: EventFormType) => void;
 };
 
-const EventsContext = createContext<EventsContextType | null>(null);
+export const EventsContext = createContext<EventsContextType | null>(null);
 const EventProvider = ({ children }: { children: ReactNode }) => {
   const { storedValue: events, setStoredValue: setEvents } =
     useLocalStorage<EventsType>("EVENTS", {});
@@ -74,11 +74,4 @@ const EventProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const useEventsData = () => {
-  const context = useContext(EventsContext);
-  if (context === null) {
-    throw new Error("useEventsData must be used within a PnpRegContext");
-  }
-  return context;
-};
 export default EventProvider;

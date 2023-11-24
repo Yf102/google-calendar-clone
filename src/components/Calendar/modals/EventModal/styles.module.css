@@ -1,6 +1,7 @@
 .input-element {
     -webkit-appearance: none;
     border: 1px solid #7e7d7d;
+    border-radius: 2px;
     background: none;
     color: black;
     height: 24px;

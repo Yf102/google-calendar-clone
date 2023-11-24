@@ -20,7 +20,7 @@ import {
 } from "react";
 import { getDateKey } from "src/utils/helper.ts";
 import EventsForDay from "src/components/Calendar/modals/EventsForDay";
-import { useEventsData } from "src/context/EventProvider.tsx";
+import { useEventsData } from "src/context/useEventsData.ts";
 import CalendarEvent from "src/components/Calendar/CalendarEvent.tsx";
 import EventModal from "src/components/Calendar/modals/EventModal";
 
