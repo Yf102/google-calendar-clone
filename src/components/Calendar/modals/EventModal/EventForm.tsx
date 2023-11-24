@@ -5,7 +5,7 @@ import ErrorLabel from "src/components/ErrorLabel";
 import ColorPicker from "src/components/ColorPicker";
 import { EventFormType } from "src/components/Calendar/index.tsx";
 import { useId } from "react";
-import { useEventsData } from "src/context/EventProvider.tsx";
+import { useEventsData } from "src/context/useEventsData.ts";
 import style from "src/components/Calendar/modals/EventModal/styles.module.css";
 
 const EventForm = ({
@@ -52,11 +52,7 @@ const EventForm = ({
   };
 
   return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        onSubmit(data as EventFormType);
-      })}
-    >
+    <form onSubmit={handleSubmit((data) => onSubmit(data as EventFormType))}>
       <div className="form-group">
         <label htmlFor={"eventName-" + id}>Name</label>
         <input type="text" id={"eventName-" + id} {...register("eventName")} />
@@ -91,7 +87,11 @@ const EventForm = ({
             />
           </div>
         </div>
-        {errors.apiErrors && <ErrorLabel msg={errors.apiErrors.message} />}
+        {(errors.startTime || errors.endTime) && (
+          <ErrorLabel
+            msg={errors?.startTime?.message || errors?.endTime?.message}
+          />
+        )}
       </div>
       <FormProvider {...methods}>
         <ColorPicker />
